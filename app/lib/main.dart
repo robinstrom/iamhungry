@@ -1,13 +1,7 @@
-// Flutter code sample for
-
-// This sample shows an [AppBar] with two simple actions. The first action
-// opens a [SnackBar], while the second action navigates to a new page.
-
 import 'package:flutter/material.dart';
 
 void main() => runApp(MyApp());
 
-/// This Widget is the main application widget.
 class MyApp extends StatelessWidget {
   static const String _title = 'iamhungry';
 
@@ -15,62 +9,58 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: _title,
-      home: MyStatelessWidget(),
+      home: Scaffold(
+          appBar: AppBar(
+            title: const Text('iamhungry'),
+            actions: <Widget>[
+              IconButton(icon: Icon(Icons.menu), onPressed: () {}),
+              IconButton(icon: Icon(Icons.navigate_next), onPressed: () {}),
+            ],
+          ),
+          body:
+              Stack(children: <Widget>[Container(child: MyStatefulWidget())])),
     );
   }
 }
 
-final GlobalKey<ScaffoldState> scaffoldKey = GlobalKey<ScaffoldState>();
-final SnackBar snackBar = const SnackBar(content: Text('Showing Snackbar'));
-
-void openPage(BuildContext context) {
-  Navigator.push(context, MaterialPageRoute(
-    builder: (BuildContext context) {
-      return Scaffold(
-        appBar: AppBar(
-          title: const Text('Next page'),
-        ),
-        body: const Center(
-          child: Text(
-            'This is the next page',
-            style: TextStyle(fontSize: 24),
-          ),
-        ),
-      );
-    },
-  ));
-}
-
-/// This is the stateless widget that the main application instantiates
-class MyStatelessWidget extends StatelessWidget {
-  MyStatelessWidget({Key key}) : super(key: key);
+class MyStatefulWidget extends StatefulWidget {
+  MyStatefulWidget({Key key}) : super(key: key);
 
   @override
+  _MyStatefulWidgetState createState() => _MyStatefulWidgetState();
+}
+
+class _MyStatefulWidgetState extends State<MyStatefulWidget> {
+  void initState() {
+    super.initState();
+  }
+
+  void dispose() {
+    super.dispose();
+  }
+
   Widget build(BuildContext context) {
     return Scaffold(
-      key: scaffoldKey,
-      appBar: AppBar(
-        title: const Text('iamhungry'),
-        actions: <Widget>[
-          IconButton(
-            icon: Icon(Icons.search),
-            onPressed: () {},
-          ),
-          IconButton(
-            icon: const Icon(Icons.navigate_next),
-            tooltip: 'Next page',
-            onPressed: () {
-              openPage(context);
-            },
-          ),
-        ],
-      ),
-      body: const Center(
-        child: Text(
-          'This is the home page',
-          style: TextStyle(fontSize: 24),
+      body: Stack(children: <Widget>[
+        Opacity(
+          opacity: 0.7,
+          child: Container(
+              decoration: BoxDecoration(
+              image: DecorationImage(
+                image: AssetImage('images/avocado-egg-sandwich.png'),
+                fit: BoxFit.cover),
+          )),
         ),
-      ),
+        Center(
+          child: TextField(
+            autofocus: true,
+            enabled: true,
+            showCursor: true,
+            decoration: InputDecoration(
+                prefixIcon: Icon(Icons.search), border: OutlineInputBorder()),
+          ),
+        ),
+      ]),
     );
   }
 }
