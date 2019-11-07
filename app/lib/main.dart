@@ -1,8 +1,13 @@
 import 'package:flutter/material.dart';
 
-void main() => runApp(new MyApp());
+void main() => runApp(
+      MaterialApp(
+        title: 'iamhungry',
+        home: HomeRoute(),
+      ),
+    );
 
-class MyApp extends StatelessWidget {
+class HomeRoute extends StatelessWidget {
   static const String _title = 'iamhungry';
 
   @override
@@ -11,12 +16,6 @@ class MyApp extends StatelessWidget {
       title: _title,
       theme: new ThemeData(),
       home: new MyStatefulWidget(),
-      builder: (BuildContext context, Widget child) {
-        return Padding(
-          child: child,
-          padding: EdgeInsets.only(bottom: 50.0),
-        );
-      },
     );
   }
 }
@@ -49,7 +48,16 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
             backgroundColor: Colors.transparent,
             elevation: 0.0,
             actions: <Widget>[
-              IconButton(icon: Icon(Icons.navigate_next), onPressed: () {}),
+              IconButton(
+                  icon: Icon(Icons.navigate_next),
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => ResultRoute(),
+                      ),
+                    );
+                  }),
             ],
           ),
           body: new Container(
@@ -67,6 +75,63 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
                   ),
                   border: new OutlineInputBorder()),
             ),
+          ),
+        ),
+      ],
+    );
+  }
+}
+
+class ResultRoute extends StatelessWidget {
+  static const String _title = 'iamhungry';
+
+  @override
+  Widget build(BuildContext context) {
+    return new MaterialApp(
+      title: _title,
+      theme: new ThemeData(),
+      home: new ResultWidget(),
+    );
+  }
+}
+
+class ResultWidget extends StatefulWidget {
+  @override
+  _ResultWidgetState createState() => _ResultWidgetState();
+}
+
+class _ResultWidgetState extends State<ResultWidget> {
+  @override
+  Widget build(BuildContext context) {
+    return Stack(
+      children: <Widget>[
+        new Container(
+          height: double.infinity,
+          width: double.infinity,
+          decoration: new BoxDecoration(
+            image: new DecorationImage(
+                image: new AssetImage('images/avocado-egg-sandwich.png'),
+                fit: BoxFit.cover),
+          ),
+        ),
+        Scaffold(
+          backgroundColor: Colors.transparent,
+          appBar: new AppBar(
+            leading: IconButton(
+              icon: Icon(Icons.navigate_before),
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => HomeRoute(),
+                  ),
+                );
+              },
+            ),
+            title: new Text('iamhungry'),
+            centerTitle: true,
+            backgroundColor: Colors.transparent,
+            elevation: 0.0,
           ),
         ),
       ],
