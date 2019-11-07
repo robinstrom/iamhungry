@@ -128,7 +128,7 @@ class _ResultWidgetState extends State<ResultWidget> {
           ),
         ),
         Scaffold(
-          backgroundColor: Colors.transparent,
+          backgroundColor: Colors.black,
           appBar: new AppBar(
             leading: IconButton(
               icon: Icon(Icons.navigate_before),
@@ -158,8 +158,29 @@ class _ResultWidgetState extends State<ResultWidget> {
             backgroundColor: Colors.transparent,
             elevation: 0.0,
           ),
+          body: ListView(
+            children: <Widget>[
+              Image.asset('images/Baked-Salmon-in-Foil.jpg',
+                  height: 300.0, fit: BoxFit.fitWidth),
+              Image.asset('images/Crispy-Cauliflower-Tacos.jpg',
+                  height: 300.0, fit: BoxFit.fitWidth),
+              Image.asset('images/pork.jpg',
+                  height: 300.0, fit: BoxFit.fitWidth),
+              Image.asset('images/sausage-kale-gnocchi.jpg',
+                  height: 300.0, fit: BoxFit.fitWidth),
+            ],
+          ),
         ),
       ],
     );
   }
+}
+
+class Recipe {
+  int id;
+  String name;
+  String img;
+  String recipeDetails;
+
+  Recipe(this.id, this.name, this.img, this.recipeDetails);
 }
