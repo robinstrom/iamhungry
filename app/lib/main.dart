@@ -43,7 +43,19 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
           backgroundColor: Colors.transparent,
           appBar: new AppBar(
             leading: IconButton(icon: Icon(Icons.menu), onPressed: () {}),
-            title: new Text('iamhungry'),
+            title: new Text(
+              'iamhungry',
+              style: TextStyle(
+                  shadows: [
+                    Shadow(
+                      color: Colors.black,
+                      blurRadius: 100.0,
+                    ),
+                  ],
+                  fontSize: 30.0,
+                  fontFamily: 'Helvetica',
+                  fontWeight: FontWeight.w400),
+            ),
             centerTitle: true,
             backgroundColor: Colors.transparent,
             elevation: 0.0,
@@ -62,6 +74,7 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
           ),
           body: new Container(
             alignment: Alignment.center,
+            margin: EdgeInsets.all(20.0),
             child: new TextField(
               style: new TextStyle(color: Colors.white, fontSize: 30),
               decoration: new InputDecoration(
@@ -128,7 +141,19 @@ class _ResultWidgetState extends State<ResultWidget> {
                 );
               },
             ),
-            title: new Text('iamhungry'),
+            title: new Text(
+              'iamhungry',
+              style: TextStyle(
+                  shadows: [
+                    Shadow(
+                      color: Colors.black,
+                      blurRadius: 100.0,
+                    ),
+                  ],
+                  fontSize: 30.0,
+                  fontFamily: 'Helvetica',
+                  fontWeight: FontWeight.w400),
+            ),
             centerTitle: true,
             backgroundColor: Colors.transparent,
             elevation: 0.0,
