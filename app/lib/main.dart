@@ -87,6 +87,14 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
                     size: 30,
                   ),
                   border: new OutlineInputBorder()),
+              onSubmitted: (s){
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => ResultRoute(),
+                  ),
+                );
+              },
             ),
           ),
         ),
