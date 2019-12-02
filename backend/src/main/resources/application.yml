@@ -1,0 +1,28 @@
+server:
+  port: 8999
+  ssl:
+    key-store-type: PKCS12
+    key-store: classpath:keystore/iamhungry.p12
+    key-store-password: "test123"
+    key-alias: "iamhungry"
+spring:
+  jackson:
+    serialization:
+      FAIL_ON_EMPTY_BEANS: false
+  security:
+    user:
+      name: "admin"
+      password: "test123"
+    require-ssl: true
+
+management:
+  endpoint:
+    health:
+      show-details: always
+    env:
+      enabled: true
+  endpoints:
+    web:
+      base-path: /
+      exposure:
+        include: env, health
