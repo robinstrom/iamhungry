@@ -1,3 +1,4 @@
+import 'package:app/RecipeBasic.dart';
 import 'package:flutter/material.dart';
 import 'ResultWidget.dart';
 

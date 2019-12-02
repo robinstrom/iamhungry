@@ -1,4 +1,9 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
+import 'package:http/http.dart' as http;
+
+import 'RecipeBasic.dart';
 import 'ResultRoute.dart';
 
 class HomeWidget extends StatefulWidget {
@@ -56,7 +61,11 @@ class _HomeWidgetState extends State<HomeWidget> {
                     size: 30,
                   ),
                   border: new OutlineInputBorder()),
-              onSubmitted: (ingredients) {
+              onSubmitted: (ingredients) async {
+                List<RecipeBasic> p = await createPost(
+                    'http://10.0.2.2:8999/recipes',
+                    body: mapIngredients(ingredients));
+                print(p[0].image);
                 Navigator.push(
                   context,
                   MaterialPageRoute(
@@ -70,4 +79,24 @@ class _HomeWidgetState extends State<HomeWidget> {
       ],
     );
   }
+}
+
+Map mapIngredients(ingredients) {
+  var map = new Map<String, dynamic>();
+  map["ingredients"] = ingredients;
+  return map;
+}
+
+Future<List<RecipeBasic>> createPost(String url, {Map body}) async {
+  Map<String, String> header = {"Content-type": "application/json", "Accept": "application/json"};
+  return http.post(url, headers: header, body: jsonEncode(body)).then((http.Response response) {
+    final int statusCode = response.statusCode;
+    if (statusCode < 200 || statusCode > 400 || json == null) {
+      print(statusCode);
+      throw new Exception("Error while fetching data");
+    }
+    print(statusCode);
+    final parsed = json.decode(response.body).cast<Map<String, dynamic>>();
+    return parsed.map<RecipeBasic>((json) => RecipeBasic.fromJson(json)).toList();
+  });
 }
