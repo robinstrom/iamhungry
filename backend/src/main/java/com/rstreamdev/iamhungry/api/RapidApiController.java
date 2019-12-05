@@ -14,8 +14,12 @@ import java.util.List;
 @RestController
 public class RapidApiController {
 
+    private RapidApiService rapidApiService;
+
     @Autowired
-    public RapidApiService rapidApiService;
+    public RapidApiController(RapidApiService rapidApiService) {
+        this.rapidApiService = rapidApiService;
+    }
 
     @RequestMapping(value = "/recipes", method = RequestMethod.POST)
     public List<RecipeBasic> ingredients(@RequestBody Ingredients ingredients) throws IOException {
