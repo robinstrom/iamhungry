@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'HomeRoute.dart';
+import 'package:app/RecipeBasic.dart';
 
 class ResultWidget extends StatefulWidget {
+
   @override
   _ResultWidgetState createState() => _ResultWidgetState();
 }
@@ -9,6 +11,7 @@ class ResultWidget extends StatefulWidget {
 class _ResultWidgetState extends State<ResultWidget> {
   @override
   Widget build(BuildContext context) {
+    final List<RecipeBasic> listOfRecipes = ModalRoute.of(context).settings.arguments;
     return Stack(
       children: <Widget>[
         new Container(
@@ -51,20 +54,16 @@ class _ResultWidgetState extends State<ResultWidget> {
             backgroundColor: Colors.transparent,
             elevation: 0.0,
           ),
-          body: ListView(
-            children: <Widget>[
-              Image.asset('images/Baked-Salmon-in-Foil.jpg',
-                  height: 300.0, fit: BoxFit.fitWidth),
-              Image.asset('images/Crispy-Cauliflower-Tacos.jpg',
-                  height: 300.0, fit: BoxFit.fitWidth),
-              Image.asset('images/pork.jpg',
-                  height: 300.0, fit: BoxFit.fitWidth),
-              Image.asset('images/sausage-kale-gnocchi.jpg',
-                  height: 300.0, fit: BoxFit.fitWidth),
-            ],
-          ),
+          body: GridView.count(
+      crossAxisCount: 3,
+      children: List.generate(listOfRecipes.length, (index) {
+        return Image.network(
+        listOfRecipes[index].image,
+        width: 300.0);
+        }),
         ),
-      ],
-    );
-  }
-}
+        ),
+        ],
+        );
+        }
+        }

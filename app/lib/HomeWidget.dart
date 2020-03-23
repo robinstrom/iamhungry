@@ -1,10 +1,10 @@
 import 'dart:convert';
 
+import 'package:app/ResultWidget.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 
 import 'RecipeBasic.dart';
-import 'ResultRoute.dart';
 
 class HomeWidget extends StatefulWidget {
   @override
@@ -62,15 +62,14 @@ class _HomeWidgetState extends State<HomeWidget> {
                   ),
                   border: new OutlineInputBorder()),
               onSubmitted: (ingredients) async {
-                List<RecipeBasic> p = await createPost(
-                    'http://10.0.2.2:8999/recipes',
+                List<RecipeBasic> listOfRecipes = await postIngredients(
+                    'https://127.0.0.1:8999/recipes',
                     body: mapIngredients(ingredients));
-                print(p[0].image);
-                Navigator.push(
+                print(listOfRecipes[0].image);
+                Navigator.pushNamed(
                   context,
-                  MaterialPageRoute(
-                    builder: (context) => ResultRoute(),
-                  ),
+                  "/result",
+                  arguments: listOfRecipes
                 );
               },
             ),
@@ -87,7 +86,7 @@ Map mapIngredients(ingredients) {
   return map;
 }
 
-Future<List<RecipeBasic>> createPost(String url, {Map body}) async {
+Future<List<RecipeBasic>> postIngredients(String url, {Map body}) async {
   Map<String, String> header = {"Content-type": "application/json", "Accept": "application/json"};
   return http.post(url, headers: header, body: jsonEncode(body)).then((http.Response response) {
     final int statusCode = response.statusCode;

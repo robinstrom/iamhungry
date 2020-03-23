@@ -3,7 +3,7 @@
 
 ### Dart ###
 # See https://www.dartlang.org/guides/libraries/private-files
-
+*.profile
 # Files and directories created by pub
 .dart_tool/
 .packages
