@@ -1,6 +1,5 @@
 import 'dart:convert';
 
-import 'package:app/ResultWidget.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 
@@ -28,7 +27,12 @@ class _HomeWidgetState extends State<HomeWidget> {
         Scaffold(
           backgroundColor: Colors.transparent,
           appBar: new AppBar(
-            leading: IconButton(icon: Icon(Icons.menu), onPressed: () {}),
+            leading: IconButton(
+              icon: Icon(Icons.menu), 
+              onPressed: () {
+              Navigator.pushNamed(context, "/about");
+            },
+            ),
             title: new Text(
               'iamhungry',
               style: TextStyle(

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'HomeRoute.dart';
 import 'package:app/RecipeBasic.dart';
+
+import 'HomeWidget.dart';
 
 class ResultWidget extends StatefulWidget {
 
@@ -32,7 +33,7 @@ class _ResultWidgetState extends State<ResultWidget> {
                 Navigator.push(
                   context,
                   MaterialPageRoute(
-                    builder: (context) => HomeRoute(),
+                    builder: (context) => HomeWidget(),
                   ),
                 );
               },
