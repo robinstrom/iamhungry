@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:http/http.dart' as http;
 
 import 'RecipeBasic.dart';
@@ -25,26 +26,30 @@ class _HomeWidgetState extends State<HomeWidget> {
           ),
         ),
         Scaffold(
-          backgroundColor: Colors.transparent,
+          backgroundColor: Colors.black26,
           appBar: new AppBar(
             leading: IconButton(
-              icon: Icon(Icons.menu), 
+              icon: Icon(Icons.menu),
+              iconSize: 40,
               onPressed: () {
-              Navigator.pushNamed(context, "/about");
-            },
+                Navigator.pushNamed(context, "/about");
+              },
             ),
-            title: new Text(
-              'iamhungry',
-              style: TextStyle(
-                  shadows: [
-                    Shadow(
-                      color: Colors.black,
-                      blurRadius: 100.0,
-                    ),
-                  ],
-                  fontSize: 30.0,
-                  fontFamily: 'Helvetica',
-                  fontWeight: FontWeight.w400),
+            title: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              children: <Widget>[
+                SizedBox(width: 30),
+                Icon(Icons.restaurant_menu, size: 40),
+                new Text(
+                  'iamhungry',
+                  style: GoogleFonts.greatVibes(
+                    fontWeight: FontWeight.bold,
+                    fontSize: 50,
+                    textStyle: TextStyle(color: Colors.white),
+                  ),
+                ),
+                SizedBox(width: 80),
+              ],
             ),
             centerTitle: true,
             backgroundColor: Colors.transparent,
@@ -70,11 +75,8 @@ class _HomeWidgetState extends State<HomeWidget> {
                     'https://127.0.0.1:8999/recipes',
                     body: mapIngredients(ingredients));
                 print(listOfRecipes[0].image);
-                Navigator.pushNamed(
-                  context,
-                  "/result",
-                  arguments: listOfRecipes
-                );
+                Navigator.pushNamed(context, "/result",
+                    arguments: listOfRecipes);
               },
             ),
           ),
@@ -91,8 +93,13 @@ Map mapIngredients(ingredients) {
 }
 
 Future<List<RecipeBasic>> postIngredients(String url, {Map body}) async {
-  Map<String, String> header = {"Content-type": "application/json", "Accept": "application/json"};
-  return http.post(url, headers: header, body: jsonEncode(body)).then((http.Response response) {
+  Map<String, String> header = {
+    "Content-type": "application/json",
+    "Accept": "application/json"
+  };
+  return http
+      .post(url, headers: header, body: jsonEncode(body))
+      .then((http.Response response) {
     final int statusCode = response.statusCode;
     if (statusCode < 200 || statusCode > 400 || json == null) {
       print(statusCode);
@@ -100,6 +107,8 @@ Future<List<RecipeBasic>> postIngredients(String url, {Map body}) async {
     }
     print(statusCode);
     final parsed = json.decode(response.body).cast<Map<String, dynamic>>();
-    return parsed.map<RecipeBasic>((json) => RecipeBasic.fromJson(json)).toList();
+    return parsed
+        .map<RecipeBasic>((json) => RecipeBasic.fromJson(json))
+        .toList();
   });
 }

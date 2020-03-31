@@ -22,26 +22,30 @@ class _AboutWidgetState extends State<AboutWidget> {
           ),
         ),
         Scaffold(
-          backgroundColor: Colors.transparent,
+          backgroundColor: Colors.black26,
           appBar: new AppBar(
             leading: IconButton(
               icon: Icon(Icons.menu),
+              iconSize: 40,
               onPressed: () {
                 Navigator.pushNamed(context, "/");
               },
             ),
-            title: new Text(
-              'iamhungry',
-              style: TextStyle(
-                  shadows: [
-                    Shadow(
-                      color: Colors.black,
-                      blurRadius: 100.0,
-                    ),
-                  ],
-                  fontSize: 30.0,
-                  fontFamily: 'Helvetica',
-                  fontWeight: FontWeight.w400),
+            title: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              children: <Widget>[
+                SizedBox(width: 30),
+                Icon(Icons.restaurant_menu, size: 40),
+                new Text(
+                  'iamhungry',
+                  style: GoogleFonts.greatVibes(
+                    fontWeight: FontWeight.bold,
+                    fontSize: 50,
+                    textStyle: TextStyle(color: Colors.white),
+                  ),
+                ),
+                SizedBox(width: 80),
+              ],
             ),
             centerTitle: true,
             backgroundColor: Colors.transparent,
@@ -51,40 +55,45 @@ class _AboutWidgetState extends State<AboutWidget> {
             crossAxisAlignment: CrossAxisAlignment.center,
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
-              Container(
-                padding: EdgeInsets.only(bottom: 20),
-                child: CircleAvatar(
-                  radius: 85,
-                  backgroundImage: AssetImage('images/profile-pic.jpg'),
-                  backgroundColor: Colors.transparent,
+              CircleAvatar(
+                radius: 130,
+                backgroundImage: AssetImage('images/profile-pic.jpg'),
+                backgroundColor: Colors.transparent,
+              ),
+              Text(
+                'Robin Ström',
+                style: GoogleFonts.barlow(
+                  textStyle: TextStyle(color: Colors.white),
+                  fontSize: 60,
+                  fontWeight: FontWeight.bold,
                 ),
               ),
-              Container(
-                child: Text(
-                  'Creator', 
+              Text(
+                'Creator / Developer',
                 style: GoogleFonts.muli(
-                  textStyle: TextStyle(
-                    color: Colors.white),
-                    fontSize: 60,
-                    fontWeight: FontWeight.w600,
-                    ),
+                  textStyle: TextStyle(color: Colors.white),
+                  fontSize: 30,
+                  fontWeight: FontWeight.bold,
                 ),
               ),
-              Container(
-                padding: EdgeInsets.only(top: 10),
-                child: Text(
-                  'Newbie with Flutter.', 
-                style: GoogleFonts.muli(
-                  textStyle: TextStyle(
-                    color: Colors.white),
-                    fontSize: 20,
-                    fontWeight: FontWeight.w500,
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: <Widget>[
+                  Icon(Icons.email, color: Colors.white),
+                  SizedBox(width: 10),
+                  Text(
+                    'robin@rstreamdev.com',
+                    style: GoogleFonts.muli(
+                      textStyle: TextStyle(color: Colors.white),
+                      fontSize: 20,
+                      fontWeight: FontWeight.normal,
                     ),
-                ),
+                  ),
+                ],
               ),
               Container(
                 width: double.infinity,
-                ),
+              ),
             ],
           ),
         ),
