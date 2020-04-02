@@ -31,21 +31,21 @@ class _AboutWidgetState extends State<AboutWidget> {
                 Navigator.pushNamed(context, "/");
               },
             ),
-            title: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
-              children: <Widget>[
-                SizedBox(width: 30),
-                Icon(Icons.restaurant_menu, size: 40),
-                new Text(
-                  'iamhungry',
-                  style: GoogleFonts.greatVibes(
-                    fontWeight: FontWeight.bold,
-                    fontSize: 50,
-                    textStyle: TextStyle(color: Colors.white),
+            title: Center(
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: <Widget>[
+                  Icon(Icons.restaurant_menu, size: 40),
+                  new Text(
+                    'iamhungry',
+                    style: GoogleFonts.greatVibes(
+                      fontWeight: FontWeight.bold,
+                      fontSize: 50,
+                      textStyle: TextStyle(color: Colors.white),
+                    ),
                   ),
-                ),
-                SizedBox(width: 80),
-              ],
+                ],
+              ),
             ),
             centerTitle: true,
             backgroundColor: Colors.transparent,

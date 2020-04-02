@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:app/RecipeBasic.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 import 'HomeWidget.dart';
 
@@ -38,18 +39,21 @@ class _ResultWidgetState extends State<ResultWidget> {
                 );
               },
             ),
-            title: new Text(
-              'iamhungry',
-              style: TextStyle(
-                  shadows: [
-                    Shadow(
-                      color: Colors.black,
-                      blurRadius: 100.0,
+            title: Center(
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: <Widget>[
+                  Icon(Icons.restaurant_menu, size: 40),
+                  new Text(
+                    'iamhungry',
+                    style: GoogleFonts.greatVibes(
+                      fontWeight: FontWeight.bold,
+                      fontSize: 50,
+                      textStyle: TextStyle(color: Colors.white),
                     ),
-                  ],
-                  fontSize: 30.0,
-                  fontFamily: 'Helvetica',
-                  fontWeight: FontWeight.w400),
+                  ),
+                ],
+              ),
             ),
             centerTitle: true,
             backgroundColor: Colors.transparent,

@@ -35,21 +35,21 @@ class _HomeWidgetState extends State<HomeWidget> {
                 Navigator.pushNamed(context, "/about");
               },
             ),
-            title: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
-              children: <Widget>[
-                SizedBox(width: 30),
-                Icon(Icons.restaurant_menu, size: 40),
-                new Text(
-                  'iamhungry',
-                  style: GoogleFonts.greatVibes(
-                    fontWeight: FontWeight.bold,
-                    fontSize: 50,
-                    textStyle: TextStyle(color: Colors.white),
+            title: Center(
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: <Widget>[
+                  Icon(Icons.restaurant_menu, size: 40),
+                  new Text(
+                    'iamhungry',
+                    style: GoogleFonts.greatVibes(
+                      fontWeight: FontWeight.bold,
+                      fontSize: 50,
+                      textStyle: TextStyle(color: Colors.white),
+                    ),
                   ),
-                ),
-                SizedBox(width: 80),
-              ],
+                ],
+              ),
             ),
             centerTitle: true,
             backgroundColor: Colors.transparent,
@@ -72,7 +72,7 @@ class _HomeWidgetState extends State<HomeWidget> {
                   border: new OutlineInputBorder()),
               onSubmitted: (ingredients) async {
                 List<RecipeBasic> listOfRecipes = await postIngredients(
-                    'https://127.0.0.1:8999/recipes',
+                    'https://ec2-13-48-223-93.eu-north-1.compute.amazonaws.com:8999/recipes',
                     body: mapIngredients(ingredients));
                 print(listOfRecipes[0].image);
                 Navigator.pushNamed(context, "/result",
